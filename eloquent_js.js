@@ -116,5 +116,39 @@ var arrToList = function(arr){
 }
 
 var listToArray = function(list){
+  if (!list) return null;
+  var arr = [list.value];
+  if (list.rest)
+    arr = arr.concat(listToArray(list.rest));
+  return arr;
+}i
 
+//Chapter 5: Higher-order functions
+//
+
+var reduce = function(arr, operator, start){
+  if(start === undefined || !start){
+    var current = 0;
+  } else {
+    var current = start;  
+  }
+
+  arr.forEach(function(d){
+    current = operator(current, d);
+  });
+  return current;
 }
+//example of using concat to 'flatten' an array
+//
+
+var flattenArray = function(){
+  return reduce(
+    [[382, 53], [3,5,3,2], [3,3,5,2,1,2,5]], 
+    function(a,b){return a.concat(b);},
+    []);
+};
+
+//skipping data-dependent examples...
+//
+
+
